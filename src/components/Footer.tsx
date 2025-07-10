@@ -42,16 +42,7 @@ export default function Footer() {
           {/* Separator */}
           <div className="hidden md:block w-px h-12 bg-gray-600"></div>
           
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-poppins font-bold text-lg mb-3 text-center md:text-left">Quick Links</h4>
-            <div className="flex space-x-6 text-sm">
-              <a href="#" className="text-gray-300 hover:text-white transition-colors">About Us</a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors">Academic Programs</a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors">Admissions</a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors">Contact</a>
-            </div>
-          </div>
+       
         </div>
         
         <div className="border-t border-gray-600 mt-6 pt-4 text-center">

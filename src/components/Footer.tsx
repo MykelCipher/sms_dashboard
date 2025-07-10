@@ -22,7 +22,6 @@ export default function Footer() {
           
           {/* Contact Information - Inline */}
           <div className="flex flex-col space-y-2">
-            <h4 className="font-poppins font-bold text-lg text-center md:text-left">Contact Information</h4>
             <div className="flex flex-col space-y-1 text-sm">
               <div className="flex items-center space-x-2">
                 <MapPin className="w-4 h-4 text-secondary" />

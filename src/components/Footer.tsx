@@ -38,11 +38,7 @@ export default function Footer() {
               </div>
             </div>
           </div>
-          
-          {/* Separator */}
-          <div className="hidden md:block w-px h-12 bg-gray-600"></div>
-          
-       
+ 
         </div>
         
         <div className="border-t border-gray-600 mt-6 pt-4 text-center">

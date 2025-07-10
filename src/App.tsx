@@ -54,14 +54,13 @@ function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-background flex">
+    <div className="min-h-screen bg-background flex flex-col">
       <Header 
         onMenuClick={() => setMobileMenuOpen(true)}
         isMobile={isMobile}
       />
       
-      <div className="flex flex-1 flex-col">
-        <div className="flex flex-1">
+      <div className="flex flex-1">
         <Sidebar
           isCollapsed={sidebarCollapsed}
           onToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
@@ -112,10 +111,9 @@ function App() {
             </div>
           </div>
         </main>
-        </div>
-        
-        <Footer />
       </div>
+      
+      <Footer />
     </div>
   );
 }

@@ -36,15 +36,6 @@ export default function Footer() {
             </div>
           </div>
           
-          <div>
-            <h4 className="font-poppins font-bold text-lg mb-3">Quick Links</h4>
-            <div className="space-y-1">
-              <a href="#" className="block text-gray-300 hover:text-white text-sm transition-colors">About Us</a>
-              <a href="#" className="block text-gray-300 hover:text-white text-sm transition-colors">Academic Programs</a>
-              <a href="#" className="block text-gray-300 hover:text-white text-sm transition-colors">Admissions</a>
-              <a href="#" className="block text-gray-300 hover:text-white text-sm transition-colors">Contact</a>
-            </div>
-          </div>
         </div>
         
         <div className="border-t border-gray-600 mt-6 pt-4 text-center">

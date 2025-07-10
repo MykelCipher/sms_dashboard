@@ -169,7 +169,7 @@ export default function Sidebar({ isCollapsed, onToggle, isMobile, isOpen, onClo
   }
 
   return (
-    <div className={`bg-white shadow-lg transition-all duration-300 h-screen sticky top-0 ${
+    <div className={`bg-white shadow-lg transition-all duration-300 h-full ${
       isCollapsed ? 'w-16' : 'w-60'
     }`}>
       <div className="flex items-center justify-between p-4 border-b">

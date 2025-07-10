@@ -1,5 +1,5 @@
 import React from 'react';
-import { Calendar, Clock } from 'lucide-react';
+import { Calendar, Clock, ExternalLink } from 'lucide-react';
 
 const notices = [
   {
@@ -51,6 +51,12 @@ export default function NoticeBoard() {
     }
   };
 
+  const handleViewAllNotices = () => {
+    console.log('Navigating to all notices page');
+    // Add navigation logic here
+    // For example: navigate('/notices')
+  };
+
   return (
     <div className="bg-white rounded-lg shadow-sm p-6">
       <h3 className="font-poppins font-bold text-lg text-primary mb-4">Notice Board</h3>
@@ -80,8 +86,12 @@ export default function NoticeBoard() {
         ))}
       </div>
       
-      <button className="w-full mt-4 text-secondary text-sm font-medium hover:text-secondary/80 transition-colors">
-        View All Notices
+      <button 
+        onClick={handleViewAllNotices}
+        className="w-full mt-4 text-secondary text-sm font-medium hover:text-secondary/80 transition-colors flex items-center justify-center space-x-1"
+      >
+        <span>View All Notices</span>
+        <ExternalLink className="w-3 h-3" />
       </button>
     </div>
   );

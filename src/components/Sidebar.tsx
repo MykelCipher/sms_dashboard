@@ -12,8 +12,9 @@ import {
   Bell,
   ChevronLeft,
   ChevronRight,
-  Menu,
-  X
+  X,
+  ChevronDown,
+  ChevronUp
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -24,23 +25,121 @@ interface SidebarProps {
   onClose: () => void;
 }
 
-const menuItems = [
+interface MenuItem {
+  icon: any;
+  label: string;
+  active?: boolean;
+  subItems?: string[];
+}
+
+const menuItems: MenuItem[] = [
   { icon: LayoutDashboard, label: 'Dashboard', active: true },
   { icon: Users, label: 'Students' },
   { icon: UserCheck, label: 'Parents' },
   { icon: GraduationCap, label: 'Teachers' },
   { icon: Users, label: 'Users' },
-  { icon: BookOpen, label: 'Academic' },
-  { icon: Calendar, label: 'Attendance' },
-  { icon: ClipboardCheck, label: 'Exam' },
+  { 
+    icon: BookOpen, 
+    label: 'Academic',
+    subItems: ['Class', 'Subject', 'Department']
+  },
+  { 
+    icon: Calendar, 
+    label: 'Attendance',
+    subItems: ['Student', 'Teacher']
+  },
+  { 
+    icon: ClipboardCheck, 
+    label: 'Exam',
+    subItems: ['Create Exam', 'Exam Schedule', 'Grade', 'Exam Attendance']
+  },
   { icon: TrendingUp, label: 'Student Promotion' },
   { icon: Settings, label: 'Account' },
-  { icon: Bell, label: 'Announcement' },
-  { icon: ClipboardCheck, label: 'Report' },
-  { icon: Settings, label: 'Settings' },
+  { 
+    icon: Bell, 
+    label: 'Announcement',
+    subItems: ['Notice', 'Event', 'Holiday']
+  },
+  { 
+    icon: ClipboardCheck, 
+    label: 'Report',
+    subItems: [
+      'Class Report', 
+      'Student Report', 
+      'Exam Schedule Report', 
+      'Attendance Report', 
+      'Terminal Performance Report', 
+      'Student Session Report', 
+      'Fee Report', 
+      'Account Ledger Report'
+    ]
+  },
+  { 
+    icon: Settings, 
+    label: 'Settings',
+    subItems: ['Academic Year', 'Assign Role/Privilege', 'Mark Setting', 'General Setting']
+  },
 ];
 
 export default function Sidebar({ isCollapsed, onToggle, isMobile, isOpen, onClose }: SidebarProps) {
+  const [expandedItems, setExpandedItems] = useState<string[]>([]);
+
+  const toggleExpanded = (label: string) => {
+    if (isCollapsed && !isMobile) return;
+    
+    setExpandedItems(prev => 
+      prev.includes(label) 
+        ? prev.filter(item => item !== label)
+        : [...prev, label]
+    );
+  };
+
+  const renderMenuItem = (item: MenuItem, index: number) => {
+    const hasSubItems = item.subItems && item.subItems.length > 0;
+    const isExpanded = expandedItems.includes(item.label);
+
+    return (
+      <div key={index}>
+        <div
+          className={`flex items-center justify-between px-3 py-2 rounded-lg mb-1 transition-colors cursor-pointer ${
+            item.active
+              ? 'bg-secondary text-white'
+              : 'text-gray-600 hover:bg-gray-100'
+          }`}
+          onClick={() => hasSubItems && toggleExpanded(item.label)}
+          title={isCollapsed && !isMobile ? item.label : ''}
+        >
+          <div className="flex items-center space-x-3">
+            <item.icon className="w-5 h-5 flex-shrink-0" />
+            {(!isCollapsed || isMobile) && <span className="font-medium">{item.label}</span>}
+          </div>
+          {hasSubItems && (!isCollapsed || isMobile) && (
+            <div className="ml-auto">
+              {isExpanded ? (
+                <ChevronUp className="w-4 h-4" />
+              ) : (
+                <ChevronDown className="w-4 h-4" />
+              )}
+            </div>
+          )}
+        </div>
+        
+        {hasSubItems && isExpanded && (!isCollapsed || isMobile) && (
+          <div className="ml-8 mb-2">
+            {item.subItems!.map((subItem, subIndex) => (
+              <div
+                key={subIndex}
+                className="px-3 py-1 text-sm text-gray-600 hover:bg-gray-50 rounded cursor-pointer transition-colors"
+              >
+                {subItem}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  };
+
   if (isMobile) {
     return (
       <>
@@ -61,21 +160,8 @@ export default function Sidebar({ isCollapsed, onToggle, isMobile, isOpen, onClo
               <X className="w-5 h-5 text-gray-500" />
             </button>
           </div>
-          <nav className="p-4">
-            {menuItems.map((item, index) => (
-              <a
-                key={index}
-                href="#"
-                className={`flex items-center space-x-3 px-3 py-2 rounded-lg mb-1 transition-colors ${
-                  item.active
-                    ? 'bg-secondary text-white'
-                    : 'text-gray-600 hover:bg-gray-100'
-                }`}
-              >
-                <item.icon className="w-5 h-5" />
-                <span className="font-medium">{item.label}</span>
-              </a>
-            ))}
+          <nav className="p-4 overflow-y-auto h-full">
+            {menuItems.map((item, index) => renderMenuItem(item, index))}
           </nav>
         </div>
       </>
@@ -83,7 +169,7 @@ export default function Sidebar({ isCollapsed, onToggle, isMobile, isOpen, onClo
   }
 
   return (
-    <div className={`bg-white shadow-lg transition-all duration-300 ${
+    <div className={`bg-white shadow-lg transition-all duration-300 h-screen sticky top-0 ${
       isCollapsed ? 'w-16' : 'w-60'
     }`}>
       <div className="flex items-center justify-between p-4 border-b">
@@ -107,22 +193,8 @@ export default function Sidebar({ isCollapsed, onToggle, isMobile, isOpen, onClo
         </button>
       </div>
       
-      <nav className="p-4">
-        {menuItems.map((item, index) => (
-          <a
-            key={index}
-            href="#"
-            className={`flex items-center space-x-3 px-3 py-2 rounded-lg mb-1 transition-colors ${
-              item.active
-                ? 'bg-secondary text-white'
-                : 'text-gray-600 hover:bg-gray-100'
-            }`}
-            title={isCollapsed ? item.label : ''}
-          >
-            <item.icon className="w-5 h-5 flex-shrink-0" />
-            {!isCollapsed && <span className="font-medium">{item.label}</span>}
-          </a>
-        ))}
+      <nav className="p-4 overflow-y-auto h-full">
+        {menuItems.map((item, index) => renderMenuItem(item, index))}
       </nav>
     </div>
   );

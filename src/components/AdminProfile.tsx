@@ -1,7 +1,13 @@
 import React from 'react';
-import { User, Clock, Shield } from 'lucide-react';
+import { User, Clock, Shield, ExternalLink } from 'lucide-react';
 
 export default function AdminProfile() {
+  const handleViewFullProfile = () => {
+    console.log('Navigating to full profile page');
+    // Add navigation logic here
+    // For example: navigate('/profile')
+  };
+
   return (
     <div className="bg-white rounded-lg shadow-sm p-6">
       <h3 className="font-poppins font-bold text-lg text-primary mb-4">Admin Profile</h3>
@@ -40,8 +46,12 @@ export default function AdminProfile() {
         </div>
       </div>
 
-      <button className="w-full mt-4 bg-secondary text-white py-2 rounded-lg text-sm font-medium hover:bg-secondary/90 transition-colors">
-        View Full Profile
+      <button 
+        onClick={handleViewFullProfile}
+        className="w-full mt-4 bg-secondary text-white py-2 rounded-lg text-sm font-medium hover:bg-secondary/90 transition-colors flex items-center justify-center space-x-1"
+      >
+        <span>View Full Profile</span>
+        <ExternalLink className="w-3 h-3" />
       </button>
     </div>
   );

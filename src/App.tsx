@@ -6,6 +6,7 @@ import SummaryCard from './components/SummaryCard';
 import Calendar from './components/Calendar';
 import NoticeBoard from './components/NoticeBoard';
 import AdminProfile from './components/AdminProfile';
+import Footer from './components/Footer';
 
 function App() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -53,13 +54,13 @@ function App() {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       <Header 
         onMenuClick={() => setMobileMenuOpen(true)}
         isMobile={isMobile}
       />
       
-      <div className="flex">
+      <div className="flex flex-1">
         <Sidebar
           isCollapsed={sidebarCollapsed}
           onToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
@@ -68,7 +69,7 @@ function App() {
           onClose={() => setMobileMenuOpen(false)}
         />
         
-        <main className={`flex-1 p-6 transition-all duration-300 ${
+        <main className={`flex-1 p-4 transition-all duration-300 ${
           isMobile ? 'ml-0' : sidebarCollapsed ? 'ml-16' : 'ml-60'
         }`}>
           <div className="max-w-7xl mx-auto">
@@ -111,6 +112,8 @@ function App() {
           </div>
         </main>
       </div>
+      
+      <Footer />
     </div>
   );
 }

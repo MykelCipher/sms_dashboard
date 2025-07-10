@@ -14,7 +14,26 @@ import {
   ChevronRight,
   X,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  School,
+  FileText,
+  Building,
+  UserPlus,
+  Clock,
+  Award,
+  BarChart3,
+  FileBarChart,
+  Target,
+  Shield,
+  Cog,
+  CalendarDays,
+  PartyPopper,
+  Plane,
+  GraduationCap as GradeCap,
+  Calculator,
+  DollarSign,
+  BookOpenCheck,
+  Globe
 } from 'lucide-react';
 
 interface SidebarProps {
@@ -25,11 +44,16 @@ interface SidebarProps {
   onClose: () => void;
 }
 
+interface SubItem {
+  label: string;
+  icon: any;
+}
+
 interface MenuItem {
   icon: any;
   label: string;
   active?: boolean;
-  subItems?: string[];
+  subItems?: SubItem[];
 }
 
 const menuItems: MenuItem[] = [
@@ -41,43 +65,64 @@ const menuItems: MenuItem[] = [
   { 
     icon: BookOpen, 
     label: 'Academic',
-    subItems: ['Class', 'Subject', 'Department']
+    subItems: [
+      { label: 'Class', icon: School },
+      { label: 'Subject', icon: BookOpenCheck },
+      { label: 'Department', icon: Building }
+    ]
   },
   { 
     icon: Calendar, 
     label: 'Attendance',
-    subItems: ['Student', 'Teacher']
+    subItems: [
+      { label: 'Student', icon: UserPlus },
+      { label: 'Teacher', icon: GraduationCap }
+    ]
   },
   { 
     icon: ClipboardCheck, 
     label: 'Exam',
-    subItems: ['Create Exam', 'Exam Schedule', 'Grade', 'Exam Attendance']
+    subItems: [
+      { label: 'Create Exam', icon: FileText },
+      { label: 'Exam Schedule', icon: CalendarDays },
+      { label: 'Grade', icon: Award },
+      { label: 'Exam Attendance', icon: Clock }
+    ]
   },
   { icon: TrendingUp, label: 'Student Promotion' },
   { icon: Settings, label: 'Account' },
   { 
     icon: Bell, 
     label: 'Announcement',
-    subItems: ['Notice', 'Event', 'Holiday']
-  },
-  { 
-    icon: ClipboardCheck, 
-    label: 'Report',
     subItems: [
-      'Class Report', 
-      'Student Report', 
-      'Exam Schedule Report', 
-      'Attendance Report', 
-      'Terminal Performance Report', 
-      'Student Session Report', 
-      'Fee Report', 
-      'Account Ledger Report'
+      { label: 'Notice', icon: FileText },
+      { label: 'Event', icon: PartyPopper },
+      { label: 'Holiday', icon: Plane }
     ]
   },
   { 
-    icon: Settings, 
+    icon: BarChart3, 
+    label: 'Report',
+    subItems: [
+      { label: 'Class Report', icon: School },
+      { label: 'Student Report', icon: Users },
+      { label: 'Exam Schedule Report', icon: CalendarDays },
+      { label: 'Attendance Report', icon: Clock },
+      { label: 'Terminal Performance Report', icon: Target },
+      { label: 'Student Session Report', icon: FileBarChart },
+      { label: 'Fee Report', icon: DollarSign },
+      { label: 'Account Ledger Report', icon: Calculator }
+    ]
+  },
+  { 
+    icon: Cog, 
     label: 'Settings',
-    subItems: ['Academic Year', 'Assign Role/Privilege', 'Mark Setting', 'General Setting']
+    subItems: [
+      { label: 'Academic Year', icon: CalendarDays },
+      { label: 'Assign Role/Privilege', icon: Shield },
+      { label: 'Mark Setting', icon: GradeCap },
+      { label: 'General Setting', icon: Globe }
+    ]
   },
 ];
 
@@ -101,10 +146,10 @@ export default function Sidebar({ isCollapsed, onToggle, isMobile, isOpen, onClo
     return (
       <div key={index}>
         <div
-          className={`flex items-center justify-between px-3 py-2 rounded-lg mb-1 transition-colors cursor-pointer ${
+          className={`flex items-center justify-between px-3 py-3 rounded-lg mb-1 transition-all duration-200 cursor-pointer ${
             item.active
-              ? 'bg-secondary text-white'
-              : 'text-gray-600 hover:bg-gray-100'
+              ? 'bg-secondary text-white shadow-md'
+              : 'text-gray-600 hover:bg-gray-200 hover:text-gray-800'
           }`}
           onClick={() => hasSubItems && toggleExpanded(item.label)}
           title={isCollapsed && !isMobile ? item.label : ''}
@@ -125,13 +170,14 @@ export default function Sidebar({ isCollapsed, onToggle, isMobile, isOpen, onClo
         </div>
         
         {hasSubItems && isExpanded && (!isCollapsed || isMobile) && (
-          <div className="ml-8 mb-2">
+          <div className="ml-8 mb-2 space-y-1">
             {item.subItems!.map((subItem, subIndex) => (
               <div
                 key={subIndex}
-                className="px-3 py-1 text-sm text-gray-600 hover:bg-gray-50 rounded cursor-pointer transition-colors"
+                className="flex items-center space-x-3 px-3 py-2 text-sm text-gray-600 hover:bg-gray-200 hover:text-gray-800 rounded-lg cursor-pointer transition-all duration-200"
               >
-                {subItem}
+                <subItem.icon className="w-4 h-4 flex-shrink-0" />
+                <span>{subItem.label}</span>
               </div>
             ))}
           </div>
@@ -156,7 +202,7 @@ export default function Sidebar({ isCollapsed, onToggle, isMobile, isOpen, onClo
               </div>
               <span className="font-poppins font-bold text-primary">SchoolLogo</span>
             </div>
-            <button onClick={onClose} className="p-1">
+            <button onClick={onClose} className="p-1 hover:bg-gray-100 rounded transition-colors">
               <X className="w-5 h-5 text-gray-500" />
             </button>
           </div>
@@ -183,7 +229,7 @@ export default function Sidebar({ isCollapsed, onToggle, isMobile, isOpen, onClo
         )}
         <button
           onClick={onToggle}
-          className="p-1 hover:bg-gray-100 rounded"
+          className="p-1 hover:bg-gray-100 rounded transition-colors"
         >
           {isCollapsed ? (
             <ChevronRight className="w-5 h-5 text-gray-500" />

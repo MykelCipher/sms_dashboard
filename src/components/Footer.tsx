@@ -5,39 +5,38 @@ export default function Footer() {
   return (
     <footer className="bg-primary text-white py-6 mt-8">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
-          <div className="flex flex-col items-center">
-            <div className="flex items-center space-x-3 mb-3 justify-center">
-              <div className="w-10 h-10 bg-secondary rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-sm">SL</span>
-              </div>
+        <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-8 text-center">
+          {/* School Logo and Name */}
+          <div className="flex items-center space-x-3">
+            <div className="w-10 h-10 bg-secondary rounded-full flex items-center justify-center">
+              <span className="text-white font-bold text-sm">SL</span>
+            </div>
+            <div>
               <span className="font-poppins font-bold text-xl">SchoolLogo</span>
-            </div>
-            <p className="text-gray-300 text-sm">
-              Excellence in Education Since 1985
-            </p>
-          </div>
-          
-          <div className="flex flex-col items-center">
-            <h4 className="font-poppins font-bold text-lg mb-3">Contact Information</h4>
-            <div className="flex flex-col space-y-2 items-center">
-              <div className="flex items-center space-x-2 text-sm flex-wrap justify-center">
-                <MapPin className="w-4 h-4 text-secondary" />
-                <span className="text-gray-300">123 Education Street, Learning City, LC 12345</span>
-              </div>
-              <div className="flex items-center space-x-4 text-sm flex-wrap justify-center">
-                <div className="flex items-center space-x-2">
-                  <Phone className="w-4 h-4 text-secondary" />
-                  <span className="text-gray-300">+1 (555) 123-4567</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Mail className="w-4 h-4 text-secondary" />
-                  <span className="text-gray-300">info@schoollogo.edu</span>
-                </div>
-              </div>
+              <p className="text-gray-300 text-sm">Excellence in Education Since 1985</p>
             </div>
           </div>
           
+          {/* Separator */}
+          <div className="hidden md:block w-px h-12 bg-gray-600"></div>
+          
+          {/* Contact Information */}
+          <div className="flex flex-col space-y-2">
+            <div className="flex items-center space-x-2 text-sm justify-center">
+              <MapPin className="w-4 h-4 text-secondary" />
+              <span className="text-gray-300">123 Education Street, Learning City, LC 12345</span>
+            </div>
+            <div className="flex items-center space-x-6 text-sm justify-center">
+              <div className="flex items-center space-x-2">
+                <Phone className="w-4 h-4 text-secondary" />
+                <span className="text-gray-300">+1 (555) 123-4567</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <Mail className="w-4 h-4 text-secondary" />
+                <span className="text-gray-300">info@schoollogo.edu</span>
+              </div>
+            </div>
+          </div>
         </div>
         
         <div className="border-t border-gray-600 mt-6 pt-4 text-center">

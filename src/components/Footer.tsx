@@ -37,7 +37,6 @@ export default function Footer() {
               </div>
             </div>
           </div>
- 
         </div>
         
         <div className="border-t border-gray-600 mt-6 pt-4 text-center">

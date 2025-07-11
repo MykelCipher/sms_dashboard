@@ -1,4 +1,3 @@
-import React from 'react';
 import { Calendar, Clock, ExternalLink } from 'lucide-react';
 
 const notices = [

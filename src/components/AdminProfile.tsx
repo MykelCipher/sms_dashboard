@@ -1,5 +1,4 @@
-import React from 'react';
-import { User, Clock, Shield, ExternalLink } from 'lucide-react';
+import { Clock, Shield, ExternalLink } from 'lucide-react';
 
 export default function AdminProfile() {
   const handleViewFullProfile = () => {

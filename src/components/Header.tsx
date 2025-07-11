@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Bell, Menu, ChevronDown, LogOut, Key } from 'lucide-react';
 
 interface HeaderProps {

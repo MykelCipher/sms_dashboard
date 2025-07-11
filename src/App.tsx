@@ -72,7 +72,7 @@ function App() {
         <main className={`flex-1 p-4 transition-all duration-300 ${
           isMobile ? 'ml-0' : sidebarCollapsed ? 'ml-16' : 'ml-60'
         }`}>
-          <div className="max-w-7xl mx-auto pl-2">
+          <div className="max-w-7xl mx-auto ml-4">
             <div className="mb-6">
               <h1 className="font-poppins font-bold text-2xl text-primary mb-2">
                 Dashboard Overview

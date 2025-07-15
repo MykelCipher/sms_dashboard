@@ -1,9 +1,9 @@
-import { DivideIcon as LucideIcon } from 'lucide-react';
+import type { Icon } from 'lucide-react';
 
 interface SummaryCardProps {
   title: string;
   value: string;
-  icon: LucideIcon;
+  icon: Icon;
   color: string;
 }
 

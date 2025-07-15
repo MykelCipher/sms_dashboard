@@ -70,7 +70,7 @@ function App() {
         />
         
         <main className={`flex-1 p-4 transition-all duration-300 ${
-          isMobile ? 'ml-0' : sidebarCollapsed ? 'ml-16' : 'sidebar-spacing'
+          isMobile ? 'ml-0' : sidebarCollapsed ? 'sidebar-collapsed-spacing' : 'sidebar-spacing'
         }`}>
           <div className="max-w-7xl mx-auto ml-1">
             <div className="mb-6">

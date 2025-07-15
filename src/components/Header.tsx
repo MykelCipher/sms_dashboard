@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { Bell, Menu, ChevronDown, LogOut, Key } from 'lucide-react';
+import { logout } from '../utils/auth';
 
 interface HeaderProps {
   onMenuClick: () => void;
@@ -22,9 +23,8 @@ export default function Header({ onMenuClick, isMobile }: HeaderProps) {
   }, []);
 
   const handleLogout = () => {
-    console.log('Logout clicked');
-    setDropdownOpen(false);
-    // Add logout logic here
+    logout();
+    window.location.href = '/';
   };
 
   const handleResetPassword = () => {
@@ -57,9 +57,15 @@ export default function Header({ onMenuClick, isMobile }: HeaderProps) {
       <div className="flex items-center space-x-4">
         <div className="relative">
           <Bell className="w-6 h-6 text-gray-600 cursor-pointer hover:text-primary" />
-          <span className="absolute -top-1 -right-1 bg-accent text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-            3
-          </span>
+          {(() => {
+            const notifications = JSON.parse(localStorage.getItem('admin_notifications') || '[]');
+            const unreadCount = notifications.filter((n: any) => !n.read).length;
+            return unreadCount > 0 ? (
+              <span className="absolute -top-1 -right-1 bg-accent text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                {unreadCount}
+              </span>
+            ) : null;
+          })()}
         </div>
         
         <div className="relative" ref={dropdownRef}>

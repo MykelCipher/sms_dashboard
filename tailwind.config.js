@@ -16,7 +16,18 @@ export default {
         'inter': ['Inter', 'sans-serif'],
         'poppins': ['Poppins', 'sans-serif'],
       },
+      animation: {
+        'slide-in': 'slideIn 0.3s ease-out',
+        'spin-slow': 'spin 3s linear infinite',
+      },
+      keyframes: {
+        slideIn: {
+          '0%': { transform: 'translateX(100%)', opacity: '0' },
+          '100%': { transform: 'translateX(0)', opacity: '1' },
+        },
+      },
     },
   },
+  darkMode: 'class',
   plugins: [],
 }

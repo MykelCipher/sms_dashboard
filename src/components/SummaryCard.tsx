@@ -1,9 +1,9 @@
-import type { Icon } from 'lucide-react';
+import React from 'react';
 
 interface SummaryCardProps {
   title: string;
   value: string;
-  icon: Icon;
+  icon: React.ElementType;
   color: string;
 }
 

@@ -18,7 +18,7 @@ export default function ProtectedRoute({ children, requiredCategory }: Protected
     setIsLoading(false);
   }, []);
 
-  const handleLogin = (userCategory: UserCategory) => {
+  const handleLogin = () => {
     const currentUser = getCurrentUser();
     setUser(currentUser);
   };
